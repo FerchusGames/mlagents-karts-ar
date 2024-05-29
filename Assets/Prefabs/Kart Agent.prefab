@@ -283,7 +283,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3137537921292383191
 Transform:
   m_ObjectHideFlags: 0
@@ -1131,7 +1131,9 @@ MonoBehaviour:
   frontWheels: {fileID: 3137537921143488001}
   backWheels: {fileID: 3137537921864692967}
   steeringWheel: {fileID: 3137537921393488640}
-  _respawnSeconds: 10
+  modelParent: {fileID: 3137537921292383188}
+  _reloadSeconds: 5
+  _isCameraKart: 0
 --- !u!114 &3137537921882263140
 MonoBehaviour:
   m_ObjectHideFlags: 0

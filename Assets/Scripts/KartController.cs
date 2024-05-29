@@ -29,11 +29,13 @@ public class KartController : MonoBehaviour
    public Transform frontWheels;
    public Transform backWheels;
    public Transform steeringWheel;
-
-   [SerializeField] private float _reloadSeconds = 10f;
+   public GameObject modelParent;
+   
+   [SerializeField] private float _reloadSeconds = 5f;
    [SerializeField] private bool _isCameraKart = false;
 
    private float _reloadTimer;
+   private float _visibleTimer = 0;
    
    public void Awake()
    {
@@ -76,6 +78,12 @@ public class KartController : MonoBehaviour
    
    public void FixedUpdate()
    {
+      _visibleTimer += Time.fixedDeltaTime;
+      if (_visibleTimer >= 13)
+      {
+         modelParent.SetActive(true);
+      }
+      
       CheckReloadTimer();
       sphere.AddForce(-kartModel.transform.right * currentSpeed, ForceMode.Acceleration);
 
@@ -98,15 +106,16 @@ public class KartController : MonoBehaviour
 
    private void CheckReloadTimer()
    {
-      if (!_isCameraKart)
-         return;
+      // if (!_isCameraKart)
+      //    return;
       
-      Debug.Log($"Reload Timer: {_reloadTimer}");
+      //Debug.Log($"Reload Timer: {_reloadTimer}");
       
       _reloadTimer -= Time.fixedDeltaTime;
       if (_reloadTimer <= 0)
       {
-         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+         gameObject.SetActive(false);
+         //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
       }
    }
 
